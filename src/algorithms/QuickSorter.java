@@ -2,7 +2,7 @@ package algorithms;
 
 import java.util.Random;
 
-public class QuickSort {
+public class QuickSorter {
     static Random random = new Random();
     public static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
@@ -22,9 +22,6 @@ public class QuickSort {
                 quickSort(arr, pivot + 1, end);
                 end = pivot - 1;
             }
-
-            quickSort(arr, start, pivot - 1);
-            quickSort(arr, pivot + 1, end);
         }
 
     }

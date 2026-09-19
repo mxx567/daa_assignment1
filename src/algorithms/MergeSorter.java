@@ -1,5 +1,5 @@
 package algorithms;
-public class MergeSort {
+public class MergeSorter {
     public static void mergeSort(int[] arr){
         int[] buf = new int[arr.length];
         mergeSort(arr, buf, 0, arr.length-1);
@@ -7,7 +7,6 @@ public class MergeSort {
 
 
     public static void mergeSort(int[] arr, int[] buf, int l, int r){
-
         if(l >= r){
             return;
         }
@@ -16,7 +15,6 @@ public class MergeSort {
             insertionSort(arr, l, r);
             return;
         }
-
 
         int mid = l + (r - l) / 2;
 
@@ -55,9 +53,7 @@ public class MergeSort {
     }
 
     private static void insertionSort(int[] arr, int l, int r) {
-
         for (int i = l + 1; i <= r; i++) {
-
             int key = arr[i];
             int j = i - 1;
 
