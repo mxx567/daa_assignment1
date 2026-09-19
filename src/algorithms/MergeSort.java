@@ -13,6 +13,12 @@ public class MergeSort {
             return;
         }
 
+        if (r - l + 1 <= 10) {
+            insertionSort(arr, l, r);
+            return;
+        }
+
+
         int mid = l + (r - l) / 2;
 
         mergeSort(arr, buf, l, mid);
@@ -36,17 +42,14 @@ public class MergeSort {
             }
         }
 
-        // Remaining left elements
         while (leftIndex <= mid) {
             buf[bufferIndex++] = a[leftIndex++];
         }
 
-        // Remaining right elements
         while (rightIndex <= r) {
             buf[bufferIndex++] = a[rightIndex++];
         }
 
-        // Copy buffer back into original array
         for (int i = l; i <= r; i++) {
             a[i] = buf[i];
         }
