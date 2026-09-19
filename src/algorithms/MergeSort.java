@@ -7,7 +7,6 @@ public class MergeSort {
 
 
     public static void mergeSort(int[] arr, int[] buf, int l, int r){
-        int len = arr.length;
 
         if(l >= r){
             return;
