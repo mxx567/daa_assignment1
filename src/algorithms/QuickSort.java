@@ -1,6 +1,12 @@
 package algorithms;
 
+import java.util.Random;
+
 public class QuickSort {
+    static Random random = new Random();
+    public static void quickSort(int[] arr) {
+        quickSort(arr, 0, arr.length - 1);
+    }
     public static void quickSort(int[] arr, int start, int end){
         if(end <= start){
             return;
@@ -11,7 +17,7 @@ public class QuickSort {
     }
 
     public static int partition(int[] arr, int start, int end){
-        int pivot = arr[end];
+        int pivot = start + random.nextInt(end - start + 1);
         int i = start -1;
         for(int j = start; j <= end - 1; j++){
             if(arr[j] < pivot){
