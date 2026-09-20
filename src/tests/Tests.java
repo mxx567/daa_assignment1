@@ -1,6 +1,9 @@
+package tests;
+
 import algorithms.DeterministicSelector;
 import algorithms.MergeSorter;
 import algorithms.QuickSorter;
+import experiments.Experiment;
 import objects.*;
 import java.util.Arrays;
 import java.util.Random;

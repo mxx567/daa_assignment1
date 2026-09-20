@@ -1,3 +1,5 @@
+package experiments;
+
 import algorithms.*;
 import objects.Point;
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.function.Supplier;
 public class Experiment {
 
     static final int[] SIZES = {1_000, 100_000, 1_000_000};                 // small, medium, large
-    static final String[] TYPES = {"random", "sorted", "reverse", "duplicates"};
+    public static final String[] TYPES = {"random", "sorted", "reverse", "duplicates"};
     static final int TRIALS = 5;
 
     static final Comparator<Point> BY_X = Comparator.comparingDouble(Point::getX);
@@ -56,13 +58,13 @@ public class Experiment {
                     + Metrics.maxDepth + "," + Metrics.calls);
         }
     }
-    static double closestPair(Point[] p) {
+    public static double closestPair(Point[] p) {
         Arrays.sort(p, BY_X);
         return ClosestPairSolver.closestPair(p, 0, p.length - 1);
     }
 
     //input generator
-    static int[] makeInts(String type, int n, Random rnd) {
+    public static int[] makeInts(String type, int n, Random rnd) {
         int[] a = new int[n];
         for (int i = 0; i < n; i++) {
             switch (type) {
@@ -76,7 +78,7 @@ public class Experiment {
     }
 
     //points generator
-    static Point[] makePoints(String type, int n, Random rnd) {
+    public static Point[] makePoints(String type, int n, Random rnd) {
         Point[] p = new Point[n];
         for (int i = 0; i < n; i++) {
             if (type.equals("duplicates")) {
