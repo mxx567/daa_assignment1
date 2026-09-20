@@ -2,6 +2,11 @@ package algorithms;
 
 public class DeterministicSelector {
     public static int detSel(int[] arr, int left, int right, int k) {
+        return detSel(arr, left, right, k, 1);
+    }
+
+    public static int detSel(int[] arr, int left, int right, int k, int depth) {
+        Metrics.enter(depth);
         int s = right - left + 1;
 
         if (s <= 5) {
@@ -21,37 +26,33 @@ public class DeterministicSelector {
         }
 
         int medianOfMedians = detSel(medbuf, 0, medbuf.length - 1, (medbuf.length + 1) / 2);
-        int pivotIndex = partition(arr, left, right, medianOfMedians);
-
-        int rank = pivotIndex - left + 1;
-
-        if (k == rank) {
-            return arr[pivotIndex];
+        for (int i = left; i <= right; i++) {
+            if (arr[i] == medianOfMedians) {
+                int t = arr[i]; arr[i] = arr[left]; arr[left] = t;
+                break;
+            }
         }
-        else if (k < rank) {
-            return detSel(arr, left, pivotIndex - 1, k);
-        }
-        else {
-            return detSel(arr, pivotIndex + 1, right, k - rank);
+        int split = partition(arr, left, right);
+
+        int leftSize = split - left + 1;
+        if (k <= leftSize) {
+            return detSel(arr, left, split, k, depth + 1);
+        } else {
+            return detSel(arr, split + 1, right, k - leftSize, depth + 1);
         }
     }
 
-    public static int partition(int[] arr, int start, int end, int pivot){
-        int i = start -1;
-        for(int j = start; j <= end - 1; j++){
-            if(arr[j] < pivot){
-                i++;
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
+    public static int partition(int[] arr, int start, int end){
+        int pivot = arr[start];
+        int i = start - 1, j = end + 1;
+        while (true) {
+            do { i++; } while (arr[i] < pivot);
+            do { j--; } while (arr[j] > pivot);
+            if (i >= j) return j;
+            int t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
         }
-        i++;
-        int temp = arr[i];
-        arr[i] = arr[end];
-        arr[end] = temp;
-
-        return i;
     }
 
     private static void insertionSort(int[] arr, int l, int r) {

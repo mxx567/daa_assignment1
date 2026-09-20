@@ -3,6 +3,11 @@ import objects.Point;
 
 public class ClosestPairSolver {
     public static double closestPair(Point[] points, int l, int r){
+        return closestPair(points, l, r, 1);
+    }
+
+    public static double closestPair(Point[] points, int l, int r, int depth){
+        Metrics.enter(depth);
         if (r - l + 1 <= 2) {
             if (r - l + 1 == 2) {
                 return getDistance(points[l], points[r]);
@@ -11,8 +16,8 @@ public class ClosestPairSolver {
         }
         else{
             int mid = l + (r-l)/2;
-            double dA = closestPair(points, l,mid);
-            double dB = closestPair(points, mid+1, r);
+            double dA = closestPair(points, l,mid, depth + 1);
+            double dB = closestPair(points, mid+1, r, depth + 1);
             double d = Math.min(dA,dB);
             double midX = points[mid].getX();
             Point[] strip = new Point[r - l + 1];

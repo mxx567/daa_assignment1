@@ -5,8 +5,12 @@ public class MergeSorter {
         mergeSort(arr, buf, 0, arr.length-1);
     }
 
-
     public static void mergeSort(int[] arr, int[] buf, int l, int r){
+        mergeSort(arr, buf, l, r, 1);
+    }
+
+    public static void mergeSort(int[] arr, int[] buf, int l, int r, int depth){
+        Metrics.enter(depth);
         if(l >= r){
             return;
         }
@@ -18,8 +22,8 @@ public class MergeSorter {
 
         int mid = l + (r - l) / 2;
 
-        mergeSort(arr, buf, l, mid);
-        mergeSort(arr, buf, mid + 1, r);
+        mergeSort(arr, buf, l, mid, depth + 1);
+        mergeSort(arr, buf, mid + 1, r, depth + 1);
 
         merge(l,r,arr, buf, mid);
     }
