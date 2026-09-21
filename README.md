@@ -78,7 +78,7 @@ The hardest part was edge cases. My first Deterministic Select gave wrong answer
 
 ## F. Screenshots
 
-**Program output:** ![Program output](src/screenshots/program_output.png)
+**Program output:** ![Program output](src/screenshots/program_output.PNG)
 
 **Plots:**
 ![Time vs n](src/plots/time_vs_n.png)
